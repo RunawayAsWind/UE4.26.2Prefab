@@ -1153,6 +1153,9 @@ void AddDebugViewPostProcessingPasses(FRDGBuilder& GraphBuilder, const FViewInfo
 			break;
 		}
 		case DVSM_LODColoration:
+//WJCode Start
+		case DVSM_TriangleNumColoration:
+//WJCode End
 			break;
 		default:
 			ensure(false);

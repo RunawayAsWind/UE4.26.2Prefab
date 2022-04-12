@@ -828,7 +828,10 @@ void FDeferredShadingSceneRenderer::RenderBasePass(
 			ViewFamily.EngineShowFlags.PrimitiveDistanceAccuracy ||
 			ViewFamily.EngineShowFlags.ShaderComplexity ||
 			ViewFamily.EngineShowFlags.LODColoration ||
-			ViewFamily.EngineShowFlags.HLODColoration);
+			//WJCode Start
+			ViewFamily.EngineShowFlags.HLODColoration ||
+			ViewFamily.EngineShowFlags.TriangleNumColoration);
+			//WJCode End
 
 	const FExclusiveDepthStencil ExclusiveDepthStencil(BasePassDepthStencilAccess);
 

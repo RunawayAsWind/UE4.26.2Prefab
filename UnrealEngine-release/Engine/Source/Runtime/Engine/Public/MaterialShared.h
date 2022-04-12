@@ -3051,6 +3051,9 @@ struct FMaterialShaderParameters
 			uint64 bMaterialIsRequiredTextureResolution : 1;
 			uint64 bMaterialIsComplexityAccumulate : 1;
 			uint64 bMaterialIsLODColoration : 1;
+			//WJCode Start
+			uint64 bMaterialIsTriangleNumColoration : 1;
+			//WJCode End
 			uint64 bIsUsedWithLidarPointCloud : 1;
 			uint64 bIsUsedWithVirtualHeightfieldMesh : 1;
 			uint64 bIsStencilTestEnabled : 1;
@@ -3123,6 +3126,9 @@ struct FMaterialShaderParameters
 		bMaterialIsRequiredTextureResolution = FriendlyName.Contains(TEXT("RequiredTextureResolution"));
 		bMaterialIsComplexityAccumulate = FriendlyName.Contains(TEXT("ComplexityAccumulate"));
 		bMaterialIsLODColoration = FriendlyName.Contains(TEXT("LODColoration"));
+		//WJCode Start
+		bMaterialIsTriangleNumColoration = FriendlyName.Contains(TEXT("TriangleNumColoration"));
+		//WJCode End
 	}
 };
 

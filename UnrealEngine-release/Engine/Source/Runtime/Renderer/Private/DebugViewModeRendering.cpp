@@ -12,6 +12,9 @@ DebugViewModeRendering.cpp: Contains definitions for rendering debug viewmodes.
 #include "MaterialTexCoordScalesRendering.h"
 #include "RequiredTextureResolutionRendering.h"
 #include "ViewMode/LODColorationRendering.h"
+//WJCode Start
+#include "ViewMode/TriangleNumColorationRendering.h"
+//WJCode End
 #include "PrimitiveSceneInfo.h"
 #include "ScenePrivate.h"
 #include "PostProcessing.h"
@@ -69,6 +72,28 @@ void SetupDebugViewModePassUniformBufferConstants(const FViewInfo& ViewInfo, FDe
 			PassParameters.LODColors[ColorIndex] = NumColors > 0 ? Colors->Last() : FLinearColor::Black;
 		}
 	}
+
+	//WJCode Start
+	// Triangle Num Colors
+	{
+		const TArray<FLinearColor>* Colors = nullptr;
+		if (ViewInfo.Family->EngineShowFlags.TriangleNumColoration)
+		{
+			Colors = &(GEngine->TriangleNumColorationColors);
+		}
+
+		const int32 NumColors = Colors ? FMath::Min<int32>(NumTriangleNumColorationColors, Colors->Num()) : 0;
+		int32 ColorIndex = 0;
+		for (; ColorIndex < NumColors; ++ColorIndex)
+		{
+			PassParameters.TriangleNumColors[ColorIndex] = (*Colors)[ColorIndex];
+		}
+		for (; ColorIndex < NumTriangleNumColorationColors; ++ColorIndex)
+		{
+			PassParameters.TriangleNumColors[ColorIndex] = NumColors > 0 ? Colors->Last() : FLinearColor::Black;
+		}
+	}
+	//WJCode End
 }
 
 TUniformBufferRef<FDebugViewModePassUniformParameters> CreateDebugViewModePassUniformBuffer(FRHICommandList& RHICmdList, const FViewInfo& View)
@@ -397,6 +422,9 @@ void InitDebugViewModeInterfaces()
 	FDebugViewModeInterface::SetInterface(DVSM_RequiredTextureResolution, new FRequiredTextureResolutionInterface());
 
 	FDebugViewModeInterface::SetInterface(DVSM_LODColoration, new FLODColorationInterface());
+//WJCode Start
+	FDebugViewModeInterface::SetInterface(DVSM_TriangleNumColoration, new FTriangleNumColorationInterface());
+//WJCode End
 }
 
 #else // !(UE_BUILD_SHIPPING || UE_BUILD_TEST)

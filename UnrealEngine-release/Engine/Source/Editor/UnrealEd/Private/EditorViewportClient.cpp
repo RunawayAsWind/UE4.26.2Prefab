@@ -2654,6 +2654,9 @@ bool FEditorViewportClient::SupportsPreviewResolutionFraction() const
 	case VMI_MeshUVDensityAccuracy:
 	case VMI_HLODColoration:
 	case VMI_GroupLODColoration:
+//WJCode Start
+	case VMI_TriangleNumColoration:
+//WJCode End
 		return false;
 	}
 

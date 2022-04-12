@@ -1129,6 +1129,10 @@ EDebugViewShaderMode ViewModeIndexToDebugViewShaderMode(EViewModeIndex SelectedV
 	case VMI_LODColoration:
 	case VMI_HLODColoration:
 		return DVSM_LODColoration;
+//WJCode Start
+	case VMI_TriangleNumColoration:
+		return DVSM_TriangleNumColoration;
+//WJCode End
 	case VMI_Unknown:
 	default :
 		return DVSM_None;

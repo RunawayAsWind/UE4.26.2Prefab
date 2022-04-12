@@ -188,6 +188,11 @@ const FSlateBrush* SEditorViewportViewMenu::GetViewMenuLabelIcon() const
 			case VMI_GroupLODColoration:
 				Icon = LODColorationIcon;
 				break;
+//WJCode Start
+			case VMI_TriangleNumColoration:
+				Icon = LODColorationIcon;
+				break;
+//WJCode End
 		}
 	}
 
@@ -354,6 +359,15 @@ void SEditorViewportViewMenu::FillViewMenu(UToolMenu* Menu) const
 							Section.AddMenuEntry(FEditorViewportCommands::Get().HLODColorationMode, UViewModeUtils::GetViewModeDisplayName(VMI_HLODColoration));
 						}
 					}
+					//WJCode Start
+					static void BuildTriangleNumMenu(UToolMenu* Menu)
+					{
+						{
+							FToolMenuSection& Section = Menu->AddSection("LevelViewportTriangleNumColoration", LOCTEXT("TriangleNumModesHeader", "TriangleNumColoration"));
+							Section.AddMenuEntry(FEditorViewportCommands::Get().TriangleNumColorationMode, UViewModeUtils::GetViewModeDisplayName(VMI_TriangleNumColoration));
+						}
+					}
+					//WJCode End
 				};
 
 				Section.AddSubMenu(
@@ -371,6 +385,23 @@ void SEditorViewportViewMenu::FillViewMenu(UToolMenu* Menu) const
 						})),
 					EUserInterfaceActionType::RadioButton,
 					/* bInOpenSubMenuOnClick = */ false, FSlateIcon(FEditorStyle::GetStyleSetName(), "EditorViewport.GroupLODColorationMode"));
+				//WJCode Start
+				Section.AddSubMenu(
+						"VisualizeTriangleNum",
+						LOCTEXT("VisualizeTriangleNumDisplayName", "TriangleNumColoration"), LOCTEXT("GroupedTriangleNumMenu_ToolTip", "Select a mode for TriangleNumColoration"),
+						FNewToolMenuDelegate::CreateStatic(&Local::BuildTriangleNumMenu),
+						FUIAction(FExecuteAction(), FCanExecuteAction(),
+							FIsActionChecked::CreateLambda([this]()
+							{
+									const TSharedRef<SEditorViewport> ViewportRef = Viewport.Pin().ToSharedRef();
+									const TSharedPtr<FEditorViewportClient> ViewportClient = ViewportRef->GetViewportClient();
+									check(ViewportClient.IsValid());
+									const EViewModeIndex ViewMode = ViewportClient->GetViewMode();
+									return (ViewMode == VMI_TriangleNumColoration);
+							})),
+						EUserInterfaceActionType::RadioButton,
+						/* bInOpenSubMenuOnClick = */ false, FSlateIcon(FEditorStyle::GetStyleSetName(), "EditorViewport.GroupLODColorationMode"));
+				//WJCode End
 			}
 		}
 

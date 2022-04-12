@@ -30,6 +30,9 @@ enum EDebugViewShaderMode
 	DVSM_RequiredTextureResolution, // Visualize the accuracy of the material texture scales used for texture streaming.
 	DVSM_RayTracingDebug,			// Visualize ray tracing debug modes.
 	DVSM_LODColoration,				// Visualize primitive LOD .
+//WJCode Start
+	DVSM_TriangleNumColoration,		// Visualize triangle num.
+//WJCode End
 	DVSM_MAX
 };
 

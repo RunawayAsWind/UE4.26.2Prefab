@@ -1093,6 +1093,11 @@ public:
 	UPROPERTY(globalconfig)
 	TArray<FLinearColor> HLODColorationColors;
 
+	//WJCode Start
+	UPROPERTY(globalconfig)
+	TArray<FLinearColor> TriangleNumColorationColors;
+	//WJCode End
+
 	/** The colors used for texture streaming accuracy debug view modes. */
 	UPROPERTY(globalconfig)
 	TArray<FLinearColor> StreamingAccuracyColors;

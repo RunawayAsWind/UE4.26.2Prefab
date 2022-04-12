@@ -6,6 +6,7 @@
 
 #include "ShowFlags.h"
 #include "SystemSettings.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 static bool IsValidNameChar(TCHAR c)
 {
@@ -308,6 +309,9 @@ void ApplyViewMode(EViewModeIndex ViewModeIndex, bool bPerspective, FEngineShowF
 		case VMI_RequiredTextureResolution:
 		case VMI_LODColoration:
 		case VMI_HLODColoration:
+//WJCode Start
+		case VMI_TriangleNumColoration:
+//WJCode End
 			bPostProcessing = false;
 			break;
 		case VMI_StationaryLightOverlap:
@@ -369,6 +373,9 @@ void ApplyViewMode(EViewModeIndex ViewModeIndex, bool bPerspective, FEngineShowF
 	EngineShowFlags.SetCollisionVisibility(ViewModeIndex == VMI_CollisionVisibility);
 	EngineShowFlags.SetLODColoration(ViewModeIndex == VMI_LODColoration);
 	EngineShowFlags.SetHLODColoration(ViewModeIndex == VMI_HLODColoration);
+//WJCode Start
+	EngineShowFlags.SetTriangleNumColoration(ViewModeIndex == VMI_TriangleNumColoration);
+//WJCode End
 	EngineShowFlags.SetRayTracingDebug(ViewModeIndex == VMI_RayTracingDebug);
 	EngineShowFlags.SetPathTracing(ViewModeIndex == VMI_PathTracing);
 }
@@ -477,6 +484,9 @@ void EngineShowFlagOverride(EShowFlagInitMode ShowFlagInitMode, EViewModeIndex V
 			ViewModeIndex == VMI_RequiredTextureResolution ||
 			ViewModeIndex == VMI_LODColoration ||
 			ViewModeIndex == VMI_HLODColoration ||
+//WJCode Start
+			ViewModeIndex == VMI_TriangleNumColoration ||
+//WJCode End
 			ViewModeIndex == VMI_LightmapDensity)
 		{
 			EngineShowFlags.SetLighting(false);
@@ -515,7 +525,9 @@ void EngineShowFlagOverride(EShowFlagInitMode ShowFlagInitMode, EViewModeIndex V
 			EngineShowFlags.Fog = 0;
 		}
 
-		if (ViewModeIndex == VMI_LODColoration || ViewModeIndex == VMI_HLODColoration)
+//WJCode Start
+		if (ViewModeIndex == VMI_LODColoration || ViewModeIndex == VMI_HLODColoration || ViewModeIndex == VMI_TriangleNumColoration)
+//WJCode End
 		{
 			EngineShowFlags.Decals = 0; // Decals require the use of FDebugPSInLean.
 		}
@@ -727,7 +739,12 @@ EViewModeIndex FindViewMode(const FEngineShowFlags& EngineShowFlags)
 	{
 		return VMI_RayTracingDebug;
 	}
-
+//WJCode Start
+	else if (EngineShowFlags.TriangleNumColoration)
+	{
+		return VMI_TriangleNumColoration;
+	}
+//WJCode End
 	return EngineShowFlags.Lighting ? VMI_Lit : VMI_Unlit;
 }
 
@@ -761,6 +778,9 @@ const TCHAR* GetViewModeName(EViewModeIndex ViewModeIndex)
 		case VMI_CollisionVisibility:		return TEXT("CollisionVis");
 		case VMI_LODColoration:				return TEXT("LODColoration");
 		case VMI_HLODColoration:			return TEXT("HLODColoration");
+//WJCode Start
+		case VMI_TriangleNumColoration:      return TEXT("TriangleNumColoration");
+//WJCode End
 	}
 	return TEXT("");
 }

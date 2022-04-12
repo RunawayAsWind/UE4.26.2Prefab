@@ -923,6 +923,9 @@ void FSceneViewState::UpdatePreExposure(FViewInfo& View)
 		!ViewFamily.EngineShowFlags.LightComplexity &&
 		!ViewFamily.EngineShowFlags.LODColoration &&
 		!ViewFamily.EngineShowFlags.HLODColoration &&
+//WJCode Start
+		!ViewFamily.EngineShowFlags.TriangleNumColoration &&
+//WJCode End
 		!ViewFamily.EngineShowFlags.LevelColoration &&
 		((!ViewFamily.EngineShowFlags.VisualizeBuffer) || View.CurrentBufferVisualizationMode != NAME_None); // disable pre-exposure for the debug visualization modes
 

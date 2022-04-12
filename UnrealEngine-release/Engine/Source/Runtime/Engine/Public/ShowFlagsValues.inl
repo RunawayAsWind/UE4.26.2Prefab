@@ -314,6 +314,10 @@ SHOWFLAG_FIXED_IN_SHIPPING(0, VisualizeSenses, SFG_Advanced, NSLOCTEXT("UnrealEd
 SHOWFLAG_FIXED_IN_SHIPPING(0, LODColoration, SFG_Hidden, NSLOCTEXT("UnrealEd", "VisualizeLODColoration", "Visualize LOD Coloration"))
 /** Visualize HLOD Coloration */
 SHOWFLAG_FIXED_IN_SHIPPING(0, HLODColoration, SFG_Hidden, NSLOCTEXT("UnrealEd", "VisualizeHLODColoration", "Visualize HLOD Coloration"))
+//WJCode Start
+/** Visualize TriangleNumColoration */
+SHOWFLAG_FIXED_IN_SHIPPING(0, TriangleNumColoration, SFG_Hidden, NSLOCTEXT("UnrealEd", "TriangleNumColoration", "TriangleNumColoration"))
+//WJCode End
 /** Visualize screen quads */
 SHOWFLAG_FIXED_IN_SHIPPING(0, QuadOverdraw, SFG_Hidden, NSLOCTEXT("UnrealEd", "QuadOverdrawSF", "Quad Overdraw"))
 /** Visualize the overhead of material quads */

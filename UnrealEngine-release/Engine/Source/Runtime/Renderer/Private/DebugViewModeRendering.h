@@ -23,12 +23,18 @@ class FDebugViewModeInterface;
 
 static const int32 NumStreamingAccuracyColors = 5;
 static const int32 NumLODColorationColors = 8;
+//WJCode Start
+static const int32 NumTriangleNumColorationColors = 6;
+//WJCode End
 static const float UndefinedStreamingAccuracyIntensity = .015f;
 
 BEGIN_GLOBAL_SHADER_PARAMETER_STRUCT(FDebugViewModePassUniformParameters, )
 	SHADER_PARAMETER_STRUCT(FSceneTextureUniformParameters, SceneTextures)
 	SHADER_PARAMETER_ARRAY(FLinearColor, AccuracyColors, [NumStreamingAccuracyColors])
 	SHADER_PARAMETER_ARRAY(FLinearColor, LODColors, [NumLODColorationColors])
+//WJCode Start
+	SHADER_PARAMETER_ARRAY(FLinearColor, TriangleNumColors, [NumTriangleNumColorationColors])
+//WJCode End
 END_GLOBAL_SHADER_PARAMETER_STRUCT()
 
 #if !(UE_BUILD_SHIPPING || UE_BUILD_TEST)

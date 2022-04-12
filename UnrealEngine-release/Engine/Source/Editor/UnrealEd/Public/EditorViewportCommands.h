@@ -125,6 +125,10 @@ public:
 	/** Changes the viewport to HLOD index coloration mode */
 	TSharedPtr< FUICommandInfo > HLODColorationMode;
 
+//WJCode Start
+	TSharedPtr< FUICommandInfo > TriangleNumColorationMode;
+//WJCode End
+
 	/** Changes the viewport to visualize the buffer content */
 	TSharedPtr< FUICommandInfo > VisualizeBufferMode;
 

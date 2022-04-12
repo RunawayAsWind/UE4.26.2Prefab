@@ -970,7 +970,9 @@ enum EViewModeIndex
 	VMI_PathTracing = 27 UMETA(DisplayName = "Path Tracing"),
 	/** Run ray tracing debug pipeline */
 	VMI_RayTracingDebug = 28 UMETA(DisplayName = "Ray Tracing Debug"),
-
+//WJCode Start
+	VMI_TriangleNumColoration = 29 UMETA(DisplayName = "TriangleNumColoration"),
+//WJCode End
 	VMI_Max UMETA(Hidden),
 
 	// VMI_Unknown - The value assigned to VMI_Unknown must be the highest possible of any member of EViewModeIndex, or GetViewModeName might seg-fault

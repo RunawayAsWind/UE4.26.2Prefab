@@ -2762,6 +2762,12 @@ EDebugViewShaderMode FSceneViewFamily::ChooseDebugViewShaderMode() const
 	{
 		return DVSM_LODColoration;
 	}
+	//WJCode Start
+	else if (EngineShowFlags.TriangleNumColoration)
+	{
+		return DVSM_TriangleNumColoration;
+	}
+	//WJCode End
 	return DVSM_None;
 }
 

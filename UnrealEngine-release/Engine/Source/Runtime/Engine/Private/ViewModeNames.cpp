@@ -146,7 +146,12 @@ TArray<FText> FillViewModeDisplayNames()
 		{
 			ViewModeDisplayNames.Emplace(LOCTEXT("UViewModeUtils_VMI_RayTracingDebug", "Ray Tracing Debug"));
 		}
-
+		//WJCode Start
+		else if (ViewModeIndex == VMI_TriangleNumColoration)
+		{
+			ViewModeDisplayNames.Emplace(LOCTEXT("UViewModeUtils_VMI_TriangleNumColoration", "TriangleNumColoration"));
+		}
+		//WJCode End
 		// VMI_Max
 		else if (ViewModeIndex == VMI_Max)
 		{

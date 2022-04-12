@@ -41,6 +41,9 @@ bool AllowDebugViewShaderMode(EDebugViewShaderMode ShaderMode, EShaderPlatform P
 		return false;
 	case DVSM_ShaderComplexity:
 	case DVSM_LODColoration:
+//WJCode Start
+	case DVSM_TriangleNumColoration:
+//WJCode End
 		return IsPCPlatform(Platform);
 	case DVSM_ShaderComplexityContainedQuadOverhead:
 	case DVSM_ShaderComplexityBleedingQuadOverhead:
